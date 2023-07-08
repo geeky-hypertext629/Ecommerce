@@ -30,7 +30,7 @@ process.on("uncaughtException",err=>{
 })
 
 const server = app.listen(process.env.PORT,()=>{
-    console.log(`Server running at https://localhost:${process.env.PORT}`);
+    console.log(`Server running at http://localhost:${process.env.PORT}`);
 })
 
 

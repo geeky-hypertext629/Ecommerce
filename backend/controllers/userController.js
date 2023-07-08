@@ -4,7 +4,6 @@ const User = require('./../models/userModels');
 const sendToken = require("../utils/jwtToken");
 const sendEmail = require("../utils/sendEmail.js");
 const crypto = require("crypto");
-const { use } = require("../routes/userRoute");
 const cloudinary = require("cloudinary");
 
 
@@ -331,4 +330,34 @@ exports.deleteUser = catchAsyncErrors(async(req,res,next)=>{
         message : "User Deleted Successfully"
     })
 
+})
+
+
+//User Contact
+
+
+exports.contactAdmin = catchAsyncErrors(async (req, res, next) => {
+
+    const email = req.body.email;
+    const name = req.body.name;
+    const subject = req.body.subject;
+    const message = req.body.message;
+    const phoneNo = req.body.phoneNo;
+    try {
+
+        await sendEmail({
+            email: "subhamchandra.12a.6@gmail.com",
+            subject: subject,
+            message: `User with name ${name} and email : ${email} and phone no.${phoneNo} has sent a message : ${message}`,
+        });
+
+        res.status(200).json({
+            success: true,
+            message: `Email sent to Admin successfuly`,
+
+        })
+
+    } catch (error) {
+        return next(new ErrorHandler(error.message, 500))
+    }
 })
