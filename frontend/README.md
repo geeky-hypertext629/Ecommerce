@@ -74,3 +74,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 
 // "proxy": "https://ecommerce-sooty-delta.vercel.app"
+
+Client ID : 140268382331-lbseh1a39ptauhpil2nk7m7h8fn5q4j6.apps.googleusercontent.com
+Client secret : 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

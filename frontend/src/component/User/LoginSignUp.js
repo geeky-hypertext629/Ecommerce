@@ -10,9 +10,14 @@ import {clearErrors,login,register} from "./../../actions/userAction";
 import {useAlert} from "react-alert";
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import Login from '../login/login';
+import Logout from '../login/logout';
+import { gapi } from 'gapi-script';
 
+const clientId = "140268382331-lbseh1a39ptauhpil2nk7m7h8fn5q4j6.apps.googleusercontent.com";
 
 const LoginSignUp = () => {
+    
 
     const dispatch = useDispatch();
     const alert = useAlert();
@@ -22,11 +27,11 @@ const LoginSignUp = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const {error,loading,isAuthenticated} = useSelector(state=>state.user)
-
-
+    
     const [loginEmail, setLoginEmail] = useState("");
     const [loginPassword, setLoginPassword] = useState("");
-
+    
+    // var accessToken = gapi.auth.getToken().access_token;
     const [user,setUser] = useState({
         name : "",
         email : "",
@@ -79,6 +84,13 @@ const registerDataChange = (e)=>{
         // const redirect = location.pathname.includes("?") ? location.pathname.split("=")[1] : "/account";
         // const redirect = [...searchParam][0] ? (/${[...searchParam][0][1]}) : ('/account');
         useEffect(() => {
+            function start(){
+                gapi.client.init({
+                    clientId : clientId,
+                    scope : ""
+                });
+                gapi.load('client:auth2',start);
+            }
           if(error)
           {
               console.log("Hello");
@@ -138,6 +150,8 @@ const registerDataChange = (e)=>{
                 <Link to="/password/forgot">Forgot Password ?</Link>
                 <input type="submit" value="Login" className='loginBtn'/>
                 </form>
+                <Login />
+                <Logout />
 
                 <form action="" className='signUpForm' ref={registerTab} encType='multipart/form-data' onSubmit={registerSubmit}>
                 <div className="signUpName">

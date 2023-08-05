@@ -22,6 +22,10 @@ const product = require("./routes/productRoute");
 
 const user = require('./routes/userRoute');
 
+app.get("/",(req,res)=>{
+    res.send("<h2>Hello World</h2>");
+})
+
 
 const order = require("./routes/orderRoute");
 const payment = require("./routes/paymentRoute");
