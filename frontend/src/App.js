@@ -54,7 +54,6 @@ const App = () => {
   async function getStripeApiKey() {
     try{
     const { data } = await axios.get("/api/v1/stripeapikey");
-
     setStripeApiKey(data.stripeApiKey);
     }
     catch(error)
@@ -71,8 +70,8 @@ const App = () => {
       }
     })
 
-    store.dispatch(loadUser());
-    getStripeApiKey();
+    // store.dispatch(loadUser());
+    // getStripeApiKey();
 
   }, [])
 
