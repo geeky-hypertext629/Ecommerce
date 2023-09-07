@@ -62,6 +62,7 @@ const App = () => {
     }
 
   }
+  
 
   useEffect(() => {
     WebFont.load({
@@ -70,8 +71,8 @@ const App = () => {
       }
     })
 
-    // store.dispatch(loadUser());
-    // getStripeApiKey();
+    store.dispatch(loadUser());
+    getStripeApiKey();
 
   }, [])
 
