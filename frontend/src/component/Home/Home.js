@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from 'react'
-import { CgMouse } from "react-icons/cg";
+import { AiOutlineShoppingCart } from "react-icons/AiOutlineShoppingCart";
 import "./Home.css"
 
 import { clearErrors, getProduct } from "../../actions/productAction";
@@ -52,12 +52,12 @@ const Home = () => {
 
             <a href="#container">
               <button onClick={productNavigate}>
-                Scroll 
+                Explore Our Products <AiOutlineShoppingCart/>
               </button>
             </a>
           </div>
 
-          <h2 className="homeHeading">Featured Products</h2>
+          <h2 className="homeHeading">Happy Browsing ✌️</h2>
 
           {/* <div className="container" id="container">
             {products && products.map((product) => (
