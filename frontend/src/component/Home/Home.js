@@ -30,7 +30,7 @@ const Home = () => {
       alert.error(error);
       dispatch(clearErrors());
     }
-    dispatch(getProduct());
+    // dispatch(getProduct());
 
   }, [dispatch, error, alert])
 
@@ -54,11 +54,11 @@ const Home = () => {
 
           <h2 className="homeHeading">Featured Products</h2>
 
-          <div className="container" id="container">
+          {/* <div className="container" id="container">
             {products && products.map((product) => (
               <ProductCard key={product._id} product={product} />
             ))}
-          </div>
+          </div> */}
         </Fragment>
       )}
     </Fragment>
