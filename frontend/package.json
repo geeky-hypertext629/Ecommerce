@@ -65,5 +65,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://ecommerce-sooty-delta.vercel.app"
+  "proxy": "https://ecombackend.azurewebsites.net/"
 }
