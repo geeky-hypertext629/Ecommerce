@@ -53,7 +53,7 @@ const Home = () => {
 
             <a href="#container">
               <button onClick={productNavigate}>
-                Explore Our Products <ShoppingCartCheckoutIcon/>
+                Products <ShoppingCartCheckoutIcon/>
               </button>
             </a>
           </div>
