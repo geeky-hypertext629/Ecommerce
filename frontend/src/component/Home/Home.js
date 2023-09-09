@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect } from 'react'
-import { AiOutlineShoppingCart } from "react-icons/AiOutlineShoppingCart";
+// import { AiOutlineShoppingCart } from "react-icons/AiOutlineShoppingCart";
+import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import "./Home.css"
 
 import { clearErrors, getProduct } from "../../actions/productAction";
@@ -52,7 +53,7 @@ const Home = () => {
 
             <a href="#container">
               <button onClick={productNavigate}>
-                Explore Our Products <AiOutlineShoppingCart/>
+                Explore Our Products <ShoppingCartCheckoutIcon/>
               </button>
             </a>
           </div>
