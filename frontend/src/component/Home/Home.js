@@ -11,6 +11,7 @@ import MetaData from '../layout/MetaData';
 import ProductCard from "./ProductCard.js"
 
 import Loader from "./../layout/Loader/Loader";
+import { useNavigate } from 'react-router-dom';
 import { useAlert } from 'react-alert';
 
 
@@ -23,7 +24,7 @@ const Home = () => {
 
   const { loading, error, products } = useSelector(state => state.products)
 
-
+  const navigate = useNavigate();
   useEffect(() => {
 
     if (error) {
@@ -34,6 +35,10 @@ const Home = () => {
 
   }, [dispatch, error, alert])
 
+  function productNavigate(){
+    navigate('/products');
+  }
+
   return (
     <Fragment>
 
@@ -43,11 +48,11 @@ const Home = () => {
 
           <div className="banner">
             <p>Welcome to Ecommerce</p>
-            <h1>FIND AMAZING PRODUCTS BELOW</h1>
+            <h1>FIND AMAZING PRODUCTS HERE</h1>
 
             <a href="#container">
-              <button>
-                Scroll <CgMouse />
+              <button onClick={productNavigate}>
+                Scroll 
               </button>
             </a>
           </div>
