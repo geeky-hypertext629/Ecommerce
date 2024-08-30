@@ -1,20 +1,15 @@
 import React, { Fragment,useRef,useState,useEffect } from 'react';
 import "./LoginSignUp.css";
 import Loader from '../layout/Loader/Loader';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import MailOutlineIcon from "@material-ui/icons/MailOutline"
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import FaceIcon from "@material-ui/icons/Face";
 import {useDispatch,useSelector} from "react-redux";
 import {clearErrors,login,register} from "./../../actions/userAction";
 import {useAlert} from "react-alert";
-import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import Login from '../login/login';
-import Logout from '../login/logout';
-import { gapi } from 'gapi-script';
 
-const clientId = "140268382331-lbseh1a39ptauhpil2nk7m7h8fn5q4j6.apps.googleusercontent.com";
 
 const LoginSignUp = () => {
     
@@ -24,14 +19,12 @@ const LoginSignUp = () => {
     const loginTab = useRef(null);
     const registerTab = useRef(null);
     const switcherTab = useRef(null);
-    const navigate = useNavigate();
     const location = useLocation();
     const {error,loading,isAuthenticated} = useSelector(state=>state.user)
-    
+    const navigate = useNavigate();
     const [loginEmail, setLoginEmail] = useState("");
     const [loginPassword, setLoginPassword] = useState("");
     
-    // var accessToken = gapi.auth.getToken().access_token;
     const [user,setUser] = useState({
         name : "",
         email : "",
@@ -51,13 +44,32 @@ const LoginSignUp = () => {
     const registerSubmit = (e) =>{
         e.preventDefault();
         const myForm =new FormData();
+        if(name.length<4)
+        {
+            alert.error('Name should be more than 4 characters');
+            return;
+        }
 
+        if(name.length>30)
+        {
+            alert.error('Name should be more than 30 characters');
+            return;
+        }
+        if(password.length<8)
+        {
+            alert.error('Password should be more than 7 characters');
+            return;
+        }
+        if(!avatar)
+        {
+            alert.error('Please select image');
+            return;
+        }
         myForm.set("name",name);
         myForm.set("email",email);
         myForm.set("password",password);
         myForm.set("avatar",avatar);
         dispatch(register(myForm))
-
 }
 
 const registerDataChange = (e)=>{
@@ -74,8 +86,7 @@ const registerDataChange = (e)=>{
         reader.readAsDataURL(e.target.files[0]);
     }
     else{
-        setUser({...user,[e.target.name]:e.target.value})//If data present then update else create
-        //This part will either add or update the value of the e.target.name field..
+        setUser({...user,[e.target.name]:e.target.value})
     }
 }
 
@@ -84,25 +95,15 @@ const registerDataChange = (e)=>{
         // const redirect = location.pathname.includes("?") ? location.pathname.split("=")[1] : "/account";
         // const redirect = [...searchParam][0] ? (/${[...searchParam][0][1]}) : ('/account');
         useEffect(() => {
-            function start(){
-                gapi.client.init({
-                    clientId : clientId,
-                    scope : ""
-                });
-                gapi.load('client:auth2',start);
+            if (error) {
+                alert.error(error);
+                dispatch(clearErrors());
             }
-          if(error)
-          {
-              console.log("Hello");
-            alert.error(error);
-            dispatch(clearErrors())
-          }
-          if(isAuthenticated)
-          {
-            navigate(redirect)
-          }
-        
-        }, [dispatch,error,alert,navigate,isAuthenticated,redirect])
+    
+            if(isAuthenticated){
+                navigate(redirect);
+            }
+        }, [dispatch, error, alert,navigate,isAuthenticated,redirect]);
         
 
     const switchTabs = (e,tab)=>{
@@ -141,7 +142,7 @@ const registerDataChange = (e)=>{
                 <form action="" className="loginForm" ref={loginTab} onSubmit={loginSubmit}>
                 <div className="loginEmail">
                     <MailOutlineIcon />
-                    <input type="email" name="email" value={loginEmail} placeholder="<EMAIL>" required onChange={(e)=>setLoginEmail(e.target.value)}/>
+                    <input type="email" name="email" value={loginEmail} placeholder="Email" required onChange={(e)=>setLoginEmail(e.target.value)}/>
                 </div>
                 <div className="loginPassword">
                     <LockOpenIcon />
@@ -150,8 +151,6 @@ const registerDataChange = (e)=>{
                 <Link to="/password/forgot">Forgot Password ?</Link>
                 <input type="submit" value="Login" className='loginBtn'/>
                 </form>
-                <Login />
-                <Logout />
 
                 <form action="" className='signUpForm' ref={registerTab} encType='multipart/form-data' onSubmit={registerSubmit}>
                 <div className="signUpName">
@@ -160,7 +159,7 @@ const registerDataChange = (e)=>{
                 </div>
                 <div className="signUpEmail">
                     <MailOutlineIcon />
-                    <input type="email" name="email" value={email}  placeholder="<EMAIL>" required onChange={registerDataChange}/>
+                    <input type="email" name="email" value={email}  placeholder="Email" required onChange={registerDataChange}/>
                 </div>
                 <div className="signUpPassword">
                     <LockOpenIcon />
