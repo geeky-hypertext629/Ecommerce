@@ -1,5 +1,7 @@
 
-# Install Dependencies
+# Ecommerce
+
+A full stack, responsive ecommerce website that supports all traditional ecommerce features such as authentication, browsing products, searching and filtering, adding products to cart, etc. It also comes with a stripe payments gateway for seamless online transactions. Also includes and admin route for managing orders, updating stocks and manage employee information.
 
 **For Backend** - `npm i`
 
