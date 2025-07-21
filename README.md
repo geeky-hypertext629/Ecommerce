@@ -3,15 +3,27 @@
 
 A full stack, responsive ecommerce website that supports all traditional ecommerce features such as authentication, browsing products, searching and filtering, adding products to cart, etc. It also comes with a stripe payments gateway for seamless online transactions. Also includes and admin route for managing orders, updating stocks and manage employee information.
 
-**For Backend** - `npm i`
+**Tech Stack/Tools/Technologies** - React, Node.js, MongoDB, Express, Cloudinary, Stripe, Tailwind CSS
 
-**For Frontend** - `cd frontend` ` npm i`
+### Setup Guide
 
-## Env Variables
+**Backend**
+- cd backend
+- npm i
+- npm run start
 
-Make Sure to Create a config.env file in backend/config directory and add appropriate variables in order to use the app.
+**Frontend**
+- cd frontend
+- npm i --force
+- npm run start
 
-**Essential Variables**
+
+## Here's the landing page view
+
+<img width="1894" height="858" alt="image" src="https://github.com/user-attachments/assets/3c83da75-c5b7-4c3d-a488-eb36cfdc0a14" />
+
+
+**Note - Use your own environment variables**
 PORT=
 DB_URI =
 STRIPE_API_KEY=
@@ -27,4 +39,3 @@ SMPT_PORT=
 CLOUDINARY_NAME
 CLOUDINARY_API_KEY
 CLOUDINARY_API_SECRET
-_fill each filed with your info respectively_
